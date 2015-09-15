@@ -22,6 +22,8 @@
 #define IntToString(x) ([NSString stringWithFormat:@"%d", x])
 #define FloatToString(x) ([NSString stringWithFormat:@"%f", x])
 
+#define ArrayToCommaSeparatedString(array) ([array componentsJoinedByString:@","])
+
 #define SafeRebuildAsNSString(pointer) \
 	if (![pointer isKindOfClass:NSString.class]) { \
 		pointer = ObjectToString(userID); \
