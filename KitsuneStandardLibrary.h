@@ -6,6 +6,10 @@
 //  Copyright (c) 2015 Ben Wheatley. All rights reserved.
 //
 
+/* Grep to find all reasonably localisable strings, with the aim of zero false negatives and minimal false positives:
+ (?<!setDateFormat:)(?<!NSClassFromString\()(?<!reuseIdentifier:)(?<!dequeueReusableCellWithIdentifier:)(?<!requestForGraphPath:)(?<!NSLog\()(?<!componentsJoinedByString:)(?<!imageNamed:)(?<!initWithNibName:)(?<!LocalizedString\()(?<!predicateWithFormat:)(?<!DLog\()@".+"
+ */
+
 #define LocalizedString(_key_) NSLocalizedString((_key_), @"")
 
 #define LocalizedHTMLForKey(htmlStringKey) \
@@ -15,6 +19,13 @@
 						   documentAttributes:nil error:nil])
 
 #define ObjectToString(object) ([NSString stringWithFormat:@"%@", object])
+#define IntToString(x) ([NSString stringWithFormat:@"%d", x])
+#define FloatToString(x) ([NSString stringWithFormat:@"%f", x])
+
+#define SafeRebuildAsNSString(pointer) \
+	if (![pointer isKindOfClass:NSString.class]) { \
+		pointer = ObjectToString(userID); \
+	}
 
 #define SafeValueOrNil(x) ((x)?(x):@"")
 
