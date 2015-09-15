@@ -7,7 +7,7 @@
 //
 
 /* Grep to find all reasonably localisable strings, with the aim of zero false negatives and minimal false positives:
- (?<!setDateFormat:)(?<!NSClassFromString\()(?<!reuseIdentifier:)(?<!dequeueReusableCellWithIdentifier:)(?<!requestForGraphPath:)(?<!NSLog\()(?<!componentsJoinedByString:)(?<!imageNamed:)(?<!initWithNibName:)(?<!LocalizedString\()(?<!predicateWithFormat:)(?<!DLog\()@".+"
+ (?<!LocalizedHTMLForKey\()(?<!setDateFormat:)(?<!NSClassFromString\()(?<!reuseIdentifier:)(?<!dequeueReusableCellWithIdentifier:)(?<!requestForGraphPath:)(?<!NSLog\()(?<!componentsJoinedByString:)(?<!imageNamed:)(?<!initWithNibName:)(?<!LocalizedString\()(?<!predicateWithFormat:)(?<!DLog\()@".+"
  */
 
 #define LocalizedString(_key_) NSLocalizedString((_key_), @"")
