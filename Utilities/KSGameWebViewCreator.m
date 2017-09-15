@@ -21,7 +21,7 @@
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     
-    NSString *path = [mainBundle bundlePath];
+    NSString *path = mainBundle.bundlePath;
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     NSString *filePath = [mainBundle pathForResource:fileNameBase ofType:fileNameExtension];
     NSData *htmlData = [NSData dataWithContentsOfFile:filePath];
@@ -29,9 +29,9 @@
     [result loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseURL];
     
     // Remove the gradients that normally appear when user scrolls the UIWebView past the start or end of content region
-    for (UIView* subView in [result subviews]) {
+    for (UIView* subView in result.subviews) {
         if ([subView isKindOfClass:[UIScrollView class]]) {
-            for (UIView* shadowView in [subView subviews]) {
+            for (UIView* shadowView in subView.subviews) {
                 if ([shadowView isKindOfClass:[UIImageView class]]) {
                     [shadowView setHidden:YES];
                 }

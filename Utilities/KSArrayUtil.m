@@ -12,7 +12,7 @@
 @implementation ArrayUtil
 
 +(void)shuffleInPlace:(NSMutableArray*)theArray {
-	int arrayLength = [theArray count];
+	int arrayLength = theArray.count;
 	for (int i=0; i<arrayLength; ++i) {
 		int newPosition = arc4random()%arrayLength;
 		[theArray exchangeObjectAtIndex:i withObjectAtIndex:newPosition];

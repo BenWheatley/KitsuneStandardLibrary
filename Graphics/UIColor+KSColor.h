@@ -20,10 +20,10 @@ typedef struct ColorStruct ColorStruct;
 
 +(UIColor*) colorWithHexR:(UInt8)red G:(UInt8)green B:(UInt8)blue;
 
--(ColorStruct) components;
--(CGFloat) r;
--(CGFloat) g;
--(CGFloat) b;
--(CGFloat) a;
+@property (NS_NONATOMIC_IOSONLY, readonly) ColorStruct components;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat r;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat g;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat b;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat a;
 
 @end

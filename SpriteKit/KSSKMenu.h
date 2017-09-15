@@ -12,7 +12,7 @@
 	NSMutableArray *menuItems;
 }
 
--(instancetype) initWithItems:(NSArray*)items;
+-(instancetype) initWithItems:(NSArray*)items NS_DESIGNATED_INITIALIZER;
 -(void)handleTouch:(CGPoint)locationInNode;
 -(void)alignItemsVerticallyWithPadding:(CGFloat)padding;
 

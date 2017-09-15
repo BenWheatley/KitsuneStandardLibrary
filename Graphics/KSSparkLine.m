@@ -20,7 +20,7 @@
 @synthesize opacity;
 @synthesize color, haloColor;
 
--(id) init {
+-(instancetype) init {
 	if ((self=[super init])) {
         self.pointData = [NSMutableArray arrayWithCapacity:0];
         self.maxOctave = 4;

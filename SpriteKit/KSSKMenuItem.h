@@ -16,14 +16,13 @@
 	void (^block)();
 }
 
--(instancetype) initWithNode:(SKNode*)node target:(id)targetArg selector:(SEL)selectorArg;
--(instancetype) initWithNodes:(NSArray*)nodesArg target:(id)targetArg selector:(SEL)selectorArg;
--(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg;
+-(instancetype) initWithNode:(SKNode*)node target:(id)targetArg selector:(SEL)selectorArg NS_DESIGNATED_INITIALIZER;
+-(instancetype) initWithNodes:(NSArray*)nodesArg target:(id)targetArg selector:(SEL)selectorArg NS_DESIGNATED_INITIALIZER;
+-(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg NS_DESIGNATED_INITIALIZER;
 -(void)handleTouch:(CGPoint)locationInNode;
 /** Returns the height of the largest menu node. */
--(CGFloat)height;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat height;
 
--(void)setSelectedIndex:(int)index;
--(int)selectedIndex;
+@property (NS_NONATOMIC_IOSONLY) int selectedIndex;
 
 @end
