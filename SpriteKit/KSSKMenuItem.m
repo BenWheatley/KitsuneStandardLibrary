@@ -34,11 +34,27 @@
 	return self;
 }
 
+-(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg {
+	if ((self=[super init])) {
+		nodes = [nodesArg mutableCopy];
+		block = blockArg;
+		for (SKNode *node in nodes) {
+			[self addChild:node];
+		}
+	}
+	
+	return self;
+}
+
 -(void)handleTouch:(CGPoint)locationInNode {
 	for (SKNode *node in nodes) {
 		if (node.userInteractionEnabled && !node.hidden) {
 			if ([self containsPoint:locationInNode]) {
-				[target performSelector:selector];
+				if (block) {
+					block();
+				} else {
+					[target performSelector:selector];
+				}
 			}
 		}
 	}

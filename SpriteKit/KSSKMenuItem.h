@@ -13,11 +13,12 @@
 	NSMutableArray *nodes;
 	id target; // TODO: This may be a memory cycle. It should be weak, but the current build target doesn't like that. Fix once it runs.
 	SEL selector;
+	void (^block)();
 }
 
 -(instancetype) initWithNode:(SKNode*)node target:(id)targetArg selector:(SEL)selectorArg;
 -(instancetype) initWithNodes:(NSArray*)nodesArg target:(id)targetArg selector:(SEL)selectorArg;
--(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())block;
+-(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg;
 -(void)handleTouch:(CGPoint)locationInNode;
 /** Returns the height of the largest menu node. */
 -(CGFloat)height;
