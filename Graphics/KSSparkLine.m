@@ -22,7 +22,7 @@
 
 -(id) init {
 	if ((self=[super init])) {
-        self.pointData = [[NSMutableArray arrayWithCapacity:0] retain];
+        self.pointData = [NSMutableArray arrayWithCapacity:0];
         self.maxOctave = 4;
         self.maxSideDelta = 50;
 		self.color = UIColor.whiteColor;
