@@ -31,13 +31,12 @@
 -(void)alignItemsVerticallyWithPadding:(CGFloat)padding {
 	CGFloat totalHeight = 0;
 	for (KSSKMenuItem *menuItem in menuItems) {
-		totalHeight += menuItem.height;
+		totalHeight += (menuItem.height+padding);
 	}
-	const CGFloat offset = totalHeight/2;
-	totalHeight = 0;
+	CGFloat currentY = totalHeight/2;
 	for (KSSKMenuItem *menuItem in menuItems) {
-		menuItem.position = CGPointMake(0, totalHeight - offset);
-		totalHeight += menuItem.height;
+		menuItem.position = CGPointMake(0, currentY);
+		currentY -= (menuItem.height+padding);
 	}
 }
 
