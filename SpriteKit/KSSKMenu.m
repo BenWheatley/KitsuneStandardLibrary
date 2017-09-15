@@ -22,9 +22,9 @@
 	return self;
 }
 
--(void)handleTouch:(CGPoint)locationInNode {
+-(void)handleTouch:(CGPoint)locationInScene {
 	for (KSSKMenuItem *menuItem in menuItems) {
-		[menuItem handleTouch:locationInNode];
+		[menuItem handleTouch:locationInScene];
 	}
 }
 

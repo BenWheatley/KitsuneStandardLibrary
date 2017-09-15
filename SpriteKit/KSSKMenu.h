@@ -13,7 +13,7 @@
 }
 
 -(instancetype) initWithItems:(NSArray*)items NS_DESIGNATED_INITIALIZER;
--(void)handleTouch:(CGPoint)locationInNode;
+-(void)handleTouch:(CGPoint)locationInScene;
 -(void)alignItemsVerticallyWithPadding:(CGFloat)padding;
 
 @end

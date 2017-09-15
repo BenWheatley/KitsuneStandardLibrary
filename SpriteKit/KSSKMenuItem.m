@@ -10,30 +10,6 @@
 
 @implementation KSSKMenuItem
 
--(instancetype) initWithNode:(SKNode*)node target:(id)targetArg selector:(SEL)selectorArg {
-	if ((self=[super init])) {
-		nodes = [NSMutableArray arrayWithObject:node];
-		target = targetArg;
-		selector = selectorArg;
-		[self addChild:node];
-	}
-	
-	return self;
-}
-
--(instancetype) initWithNodes:(NSArray*)nodesArg target:(id)targetArg selector:(SEL)selectorArg {
-	if ((self=[super init])) {
-		nodes = [nodesArg mutableCopy];
-		target = targetArg;
-		selector = selectorArg;
-		for (SKNode *node in nodes) {
-			[self addChild:node];
-		}
-	}
-	
-	return self;
-}
-
 -(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg {
 	if ((self=[super init])) {
 		nodes = [nodesArg mutableCopy];
@@ -46,14 +22,14 @@
 	return self;
 }
 
--(void)handleTouch:(CGPoint)locationInNode {
+-(void)handleTouch:(CGPoint)locationInScene {
 	for (SKNode *node in nodes) {
 		if (node.userInteractionEnabled && !node.hidden) {
-			if ([self containsPoint:locationInNode]) {
+			if ([node containsPoint:locationInScene]) {
+				NSLog(@"containsPoint");
 				if (block) {
+					NSLog(@"performing block");
 					block();
-				} else {
-					[target performSelector:selector];
 				}
 			}
 		}
