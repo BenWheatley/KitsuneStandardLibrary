@@ -18,6 +18,8 @@ typedef struct ColorStruct ColorStruct;
 
 @interface UIColor (KSColor)
 
++(UIColor*) colorWithHexR:(UInt8)red G:(UInt8)green B:(UInt8)blue;
+
 -(ColorStruct) components;
 -(CGFloat) r;
 -(CGFloat) g;

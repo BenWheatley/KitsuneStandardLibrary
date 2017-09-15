@@ -6,21 +6,14 @@
 //  Copyright 2011 Kitsune Software. All rights reserved.
 //
 
-#import "cocos2d.h"
+#import "UIColor+KSColor.h"
+#import <SpriteKit/SpriteKit.h>
 
-#define BLUE_HALO (ccc3(125, 62, 255)) // Magic numbers come from eyedropper tool
-#define YELLOW_HALO (ccc3(0xCC, 0xFF, 0x88)) // Magic numbers!!!
+#define BLUE_HALO ([UIColor colorWithHexR:125 G:62 B:255]) // Magic numbers come from eyedropper tool
+#define YELLOW_HALO ([UIColor colorWithHexR:0xCC G:0xFF B:0x88]) // Magic numbers!!!
 
-@interface KSSparkLine : CCNode <CCRGBAProtocol> {
-    CGPoint _point1, _point2;
-    double _maxSideDelta;
-    NSMutableArray *_pointData;
-    int _maxOctave; // Should not exceed 5 due to behaviour of OpenGL ES
-    GLfloat _lineThickness;
-    GLfloat _haloThickness;
+@interface KSSparkLine : SKNode {
     
-	GLubyte _opacity;
-	ccColor3B _color, _haloColor;
 }
 
 @property (nonatomic, readwrite, assign) CGPoint point1;
@@ -31,8 +24,8 @@
 @property (nonatomic, readwrite, assign) GLfloat lineThickness;
 @property (nonatomic, readwrite, assign) GLfloat haloThickness;
 @property (nonatomic, readwrite, assign) GLubyte opacity;
-@property (nonatomic, readwrite, assign) ccColor3B color;
-@property (nonatomic, readwrite, assign) ccColor3B haloColor;
+@property (nonatomic, readwrite, assign) SKColor* color;
+@property (nonatomic, readwrite, assign) SKColor* haloColor;
 
 -(void) rebuildSpark;
 

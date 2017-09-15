@@ -11,6 +11,9 @@
 
 @implementation UIColor (KSColor)
 
++(UIColor*) colorWithHexR:(UInt8)red G:(UInt8)green B:(UInt8)blue {
+	return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+}
 
 -(ColorStruct) components {
 	CGColorRef color = self.CGColor;

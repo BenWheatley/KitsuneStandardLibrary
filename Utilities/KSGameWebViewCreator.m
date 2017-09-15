@@ -40,14 +40,31 @@
     }
     
     // Add a delegate
-    result.delegate = [[KSGameWebViewDelegate alloc] init];
-    
+	result.delegate = KSGameWebViewDelegate.commonWebViewDelegate;
+	
     return result;
 }
 
 @end
 
 @implementation KSGameWebViewDelegate
+
++ (KSGameWebViewDelegate *) commonWebViewDelegate {
+	// Pattern from https://stackoverflow.com/questions/2199106/thread-safe-instantiation-of-a-singleton
+	static KSGameWebViewDelegate * commonWebViewDelegate = nil;
+	static dispatch_once_t pred;
+	
+	if (commonWebViewDelegate) {
+		return commonWebViewDelegate;
+	}
+	
+	dispatch_once(&pred, ^{
+		commonWebViewDelegate = [KSGameWebViewDelegate alloc];
+		commonWebViewDelegate = [commonWebViewDelegate init];
+	});
+	
+	return commonWebViewDelegate;
+}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

@@ -27,4 +27,6 @@
     
 }
 
++ (KSGameWebViewDelegate *) commonWebViewDelegate;
+
 @end
