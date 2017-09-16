@@ -16,6 +16,8 @@
 
 -(instancetype) initWithNodes:(NSArray*)nodesArg block:(void (^)())blockArg NS_DESIGNATED_INITIALIZER;
 -(void)handleTouch:(CGPoint)locationInScene;
+-(void) touch;
+
 /** Returns the height of the largest menu node. */
 @property (NS_NONATOMIC_IOSONLY, readonly) CGFloat height;
 
