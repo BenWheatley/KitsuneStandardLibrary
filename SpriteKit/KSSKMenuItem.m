@@ -16,6 +16,7 @@
 		block = blockArg;
 		for (SKNode *node in nodes) {
 			[self addChild:node];
+			node.userInteractionEnabled = YES;
 		}
 	}
 	
@@ -25,6 +26,7 @@
 -(void)handleTouch:(CGPoint)locationInScene {
 	for (SKNode *node in nodes) {
 		if (node.userInteractionEnabled && !node.hidden) {
+			NSLog(@"locationInScene: %@", CGPointCreateDictionaryRepresentation(locationInScene));
 			if ([node containsPoint:locationInScene]) {
 				NSLog(@"containsPoint");
 				if (block) {
