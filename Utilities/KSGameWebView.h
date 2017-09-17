@@ -15,7 +15,8 @@
     
 }
 
-+(KSGameWebView*) makeWebViewWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect
++(KSGameWebView*) makeWebViewWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect;
+-(instancetype) initWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect;
 
 @end
 
