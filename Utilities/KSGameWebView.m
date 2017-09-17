@@ -11,15 +11,14 @@
 
 @implementation KSGameWebView
 
-+(KSGameWebView*) makeWebViewWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect
-{
++(KSGameWebView*) makeWebViewWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect {
 	return [[KSGameWebView alloc] initWithLocalFile:fileNameBase fileNameExtension:fileNameExtension boundingRect:boundingRect];
 }
 
 -(instancetype) initWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect {
 	if (self=[super initWithFrame:boundingRect]) {
 		self.backgroundColor = [UIColor clearColor];
-		[self setOpaque:NO];
+		self.opaque = NO;
 		
 		NSBundle *mainBundle = [NSBundle mainBundle];
 		
@@ -32,11 +31,11 @@
 		
 		// Remove the gradients that normally appear when user scrolls the UIWebView past the start or end of content region
 		// This was written for iOS 4.2 and is almost certainly obsolete now (now = iOS 10), but it compiles and doesn't cause any harm.
-		for (UIView* subView in self.subviews) {
-			if ([subView isKindOfClass:[UIScrollView class]]) {
-				for (UIView* shadowView in subView.subviews) {
-					if ([shadowView isKindOfClass:[UIImageView class]]) {
-						[shadowView setHidden:YES];
+		for (UIView *subView in self.subviews) {
+			if ([subView isKindOfClass:UIScrollView.class]) {
+				for (UIView *shadowView in subView.subviews) {
+					if ([shadowView isKindOfClass:UIImageView.class]) {
+						shadowView.hidden = YES;
 					}
 				}
 			}
@@ -69,10 +68,9 @@
 	return commonWebViewDelegate;
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        [[UIApplication sharedApplication] openURL:request.URL];
+        [UIApplication.sharedApplication openURL:request.URL];
         return false;
     }
     return true;
