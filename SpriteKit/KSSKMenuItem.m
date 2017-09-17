@@ -18,35 +18,16 @@
 			[self addChild:node];
 			node.userInteractionEnabled = YES;
 		}
+		[self setSelectedIndex:0];
 	}
 	
 	return self;
 }
 
--(void)handleTouch:(CGPoint)locationInScene {
-	for (SKNode *node in nodes) {
-		if (node.userInteractionEnabled && !node.hidden) {
-			NSLog(@"locationInScene: %@", CGPointCreateDictionaryRepresentation(locationInScene));
-			NSLog(@"node.frame: %@", CGRectCreateDictionaryRepresentation(node.frame));
-			if ([node containsPoint:locationInScene]) {
-				NSLog(@"containsPoint");
-				if (block) {
-					NSLog(@"performing block");
-					block();
-				}
-			}
-		}
-	}
-}
-
 -(void) touch {
-	NSLog(@"touch");
 	for (SKNode *node in nodes) {
-		NSLog(@"node: %@", node);
 		if (node.userInteractionEnabled && !node.hidden) {
-			NSLog(@"node.frame: %@", CGRectCreateDictionaryRepresentation(node.frame));
 			if (block) {
-				NSLog(@"performing block");
 				block();
 			}
 		}
