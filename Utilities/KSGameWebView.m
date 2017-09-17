@@ -17,36 +17,35 @@
 }
 
 -(instancetype) initWithLocalFile:(NSString*)fileNameBase fileNameExtension:(NSString*)fileNameExtension boundingRect:(CGRect)boundingRect {
-    UIWebView *result;
-    
-    result = [[UIWebView alloc] initWithFrame:boundingRect];
-    result.backgroundColor = [UIColor clearColor];
-    [result setOpaque:NO];
-    
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    
-    NSString *path = mainBundle.bundlePath;
-    NSURL *baseURL = [NSURL fileURLWithPath:path];
-    NSString *filePath = [mainBundle pathForResource:fileNameBase ofType:fileNameExtension];
-    NSData *htmlData = [NSData dataWithContentsOfFile:filePath];
-    
-    [result loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseURL];
-    
-    // Remove the gradients that normally appear when user scrolls the UIWebView past the start or end of content region
-    for (UIView* subView in result.subviews) {
-        if ([subView isKindOfClass:[UIScrollView class]]) {
-            for (UIView* shadowView in subView.subviews) {
-                if ([shadowView isKindOfClass:[UIImageView class]]) {
-                    [shadowView setHidden:YES];
-                }
-            }
-        }
-    }
-    
-    // Add a delegate
-	result.delegate = KSGameWebViewDelegate.commonWebViewDelegate;
-	
-    return result;
+	if (self=[super initWithFrame:boundingRect]) {
+		self.backgroundColor = [UIColor clearColor];
+		[self setOpaque:NO];
+		
+		NSBundle *mainBundle = [NSBundle mainBundle];
+		
+		NSString *path = mainBundle.bundlePath;
+		NSURL *baseURL = [NSURL fileURLWithPath:path];
+		NSString *filePath = [mainBundle pathForResource:fileNameBase ofType:fileNameExtension];
+		NSData *htmlData = [NSData dataWithContentsOfFile:filePath];
+		
+		[self loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseURL];
+		
+		// Remove the gradients that normally appear when user scrolls the UIWebView past the start or end of content region
+		// This was written for iOS 4.2 and is almost certainly obsolete now (now = iOS 10), but it compiles and doesn't cause any harm.
+		for (UIView* subView in self.subviews) {
+			if ([subView isKindOfClass:[UIScrollView class]]) {
+				for (UIView* shadowView in subView.subviews) {
+					if ([shadowView isKindOfClass:[UIImageView class]]) {
+						[shadowView setHidden:YES];
+					}
+				}
+			}
+		}
+		
+		// Add a delegate
+		self.delegate = KSGameWebViewDelegate.commonWebViewDelegate;
+	}
+    return self;
 }
 
 @end

@@ -11,7 +11,7 @@
 
 #pragma mark KSGameWebViewCreator
 
-@interface KSGameWebView : NSObject {
+@interface KSGameWebView : UIWebView {
     
 }
 
