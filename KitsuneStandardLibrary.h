@@ -31,10 +31,13 @@
 
 #define SafeValueOrNil(x) ((x)?(x):@"")
 
+// This currently handles if-let-not-nil
+// TODO: does _not_ handle if-let-is-type
+// TODO: does _not_ handle commas in code block
 #define IF_LET(tempType, temp, optional, code) \
 if ((optional)!=nil) { \
 	tempType *temp = optional;\
-	code\
+	{code}\
 }
 
 #define RGB(r,g,b) ([UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1])
