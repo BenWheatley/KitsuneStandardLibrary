@@ -31,12 +31,19 @@
 
 #define SafeValueOrNil(x) ((x)?(x):@"")
 
-// This currently handles if-let-not-nil
-// TODO: does _not_ handle if-let-is-type
-// TODO: does _not_ handle commas in code block
+/** This currently handles if-let-not-nil and if-let-is-type, but not where clauses
+	Note: these days I prefer functions to macros, but I don't see any way to pass
+	a local variable _name_ to a function such that it would create a code block
+	which can use that _name_ internally when being compiled.
+ 
+ TODO: does _not_ handle commas in code block: this can be worked around with ()'s, e.g.
+	 `foo = @[1, 2];`
+		 becomes
+	 `foo = (@[1, 2]);`
+ */
 #define IF_LET(tempType, temp, optional, code) \
-if ((optional)!=nil) { \
-	tempType *temp = optional;\
+if ((optional)!=nil && [optional isKindOfClass:tempType.class]) { \
+	tempType *temp = (tempType*)optional;\
 	{code}\
 }
 
